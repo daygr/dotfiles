@@ -1,0 +1,342 @@
+# i3 config file
+# for a complete reference please refer to http://i3wm.org/docs/userguide.html
+
+# font settins will be used for window tiles and bars
+font xft:Noto Mono for Powerline 12
+
+# mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod4
+
+# use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# border style <normal|1pixel|pixel xx|none|pixel>
+# note that new_float applies only to windows wich are strating
+# out as floating windows but not to windows that are floated later on
+new_window 1pixel
+new_float normal
+
+# hide edge borders <none|vertical|horizontal|both|smart>
+hide_edge_borders none
+
+# colors based in alexbooker i3 colors
+# modifying the value of any variable will affect
+# all the areas that use the same color
+set $base00 #101218
+set $base01 #212121
+set $base02 #1F242F
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+set $base0D #97bbf7
+set $base0E #c0b7f9
+set $base0F #fcc09e
+set $base10 #8bc34a
+set $base11 #150E0E
+set $base12 #474747
+
+# focus the last urgent window
+bindsym $mod+u [urgent=latest]  focus
+
+# come back and forth from two last used windows using Alt+Tab
+bindsym Mod1+Tab                workspace back_and_forth
+
+# start a terminal
+#bindsym $mod+Return             exec i3-sensible-terminal
+#bindsym $mod+Return             exec gnome-terminal
+bindsym $mod+Return             exec kitty -1
+
+# lock i3 with i3lock
+bindsym $mod+x                  exec "i3lock -c '#000000' && sleep 1 && xset dmps force off"
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start file manager
+bindsym $mod+n                  exec ranger
+# uncomment (and comment line avobe) if you preffer pcmanfm file manager
+#bindsym $mod+n exec pcmanfm
+
+# start launcher
+# j4-dmenu-desktop
+#bindsym $mod+d                  exec j4-dmenu-desktop
+# uncomment (and comment line ebove) if you use KDE/Plama applications
+#bindsym $mod+d exec QT_QPA_PLATFORMTHEME="kde" j4-dmenu-desktop
+#
+# rofi
+bindsym $mod+d                  exec "rofi -show combi"
+
+# show an OSD calendar
+bindsym $mod+F12                exec --no-startup-id "cal | osd_cat -c white -l 8 -i 10 -o 10 -f '-*-*-medium-*-*-*-20-*-*-*-*-*-*-*' -p bottom -A right -s 1"
+
+# change focuS
+bindsym $mod+h                  focus left
+bindsym $mod+l                  focus right
+bindsym $mod+k                  focus up
+bindsym $mod+j                  focus down
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left               focus left
+bindsym $mod+Right              focus right
+bindsym $mod+Up                 focus up
+bindsym $mod+Down               focus down
+
+# move focused window
+bindsym $mod+Shift+h            move left
+bindsym $mod+Shift+l            move right
+bindsym $mod+Shift+k            move up
+bindsym $mod+Shift+j            move down
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left         move left
+bindsym $mod+Shift+Down         move down
+bindsym $mod+Shift+Up           move up
+bindsym $mod+Shift+Right        move right
+
+# split in horizontal orientation
+bindsym $mod+g                  split h
+
+# split in vertical orientation
+bindsym $mod+v                  split v
+
+# split toggle
+bindsym $mod+q                  split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f                  fullscreen
+bindsym $mod+Shift+Return       fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s                  layout stacking
+bindsym $mod+w                  layout tabbed
+bindsym $mod+e                  layout toggle split
+
+# move container to right screen
+bindsym $mod+Mod1+Right         move container to output right
+bindsym $mod+Mod1+Left          move container to output left
+
+# toggle tiling / floating
+bindsym $mod+Shift+space        floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space              focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a                  focus parent
+
+# focus the child container
+bindsym $mod+Shift+a            focus child
+
+# toggle sticky
+bindsym $mod+Shift+s            sticky toggle
+
+# makes the focused window into a scratchpad window
+bindsym $mod+Shift+minus        move scratchpad
+
+# hides or shows the focused scratchpad windows, cycle if more than one
+bindsym $mod+minus              scratchpad show
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right         workspace next
+bindsym $mod+Ctrl+Left          workspace prev
+
+# name the workspaces
+# to display fancy names or symbols you can use a font likr awesome and
+# use something like the following example:
+#       set $workspace1 "1: "
+#       set $workspace2 "2: "
+set $workspace1 1 
+set $workspace2 2 
+set $workspace3 3 
+set $workspace4 4 
+set $workspace5 5 
+set $workspace6 6 
+set $workspace7 7 
+set $workspace8 8 
+set $workspace9 9 
+set $workspace0 10
+set $workspace11 F1
+set $workspace12 F2
+set $workspace13 F3
+set $workspace14 F4
+set $workspace15 F5
+set $workspace16 F6
+set $workspace17 F7
+set $workspace18 F8
+set $workspace19 F9
+
+# switch to workspace
+bindsym $mod+1                  workspace $workspace1
+bindsym $mod+2                  workspace $workspace2
+bindsym $mod+3                  workspace $workspace3
+bindsym $mod+4                  workspace $workspace4
+bindsym $mod+5                  workspace $workspace5
+bindsym $mod+6                  workspace $workspace6
+bindsym $mod+7                  workspace $workspace7
+bindsym $mod+8                  workspace $workspace8
+bindsym $mod+9                  workspace $workspace9
+bindsym $mod+0                  workspace $workspace0
+bindsym $mod+F1                 workspace $workspace11
+bindsym $mod+F2                 workspace $workspace12
+bindsym $mod+F3                 workspace $workspace13
+bindsym $mod+F4                 workspace $workspace14
+bindsym $mod+F5                 workspace $workspace15
+bindsym $mod+F6                 workspace $workspace16
+bindsym $mod+F7                 workspace $workspace17
+bindsym $mod+F8                 workspace $workspace18
+bindsym $mod+F9                 workspace $workspace19
+
+# move focused container to workspace
+bindsym $mod+Shift+1            move container to workspace $workspace1
+bindsym $mod+Shift+2            move container to workspace $workspace2
+bindsym $mod+Shift+3            move container to workspace $workspace3
+bindsym $mod+Shift+4            move container to workspace $workspace4
+bindsym $mod+Shift+5            move container to workspace $workspace5
+bindsym $mod+Shift+6            move container to workspace $workspace6
+bindsym $mod+Shift+7            move container to workspace $workspace7
+bindsym $mod+Shift+8            move container to workspace $workspace8
+bindsym $mod+Shift+9            move container to workspace $workspace9
+bindsym $mod+Shift+0            move container to workspace $workspace0
+bindsym $mod+Shift+F1           move container to workspace $workspace11
+bindsym $mod+Shift+F2           move container to workspace $workspace12
+bindsym $mod+Shift+F3           move container to workspace $workspace13
+bindsym $mod+Shift+F4           move container to workspace $workspace14
+bindsym $mod+Shift+F5           move container to workspace $workspace15
+bindsym $mod+Shift+F6           move container to workspace $workspace16
+bindsym $mod+Shift+F7           move container to workspace $workspace17
+bindsym $mod+Shift+F8           move container to workspace $workspace18
+bindsym $mod+Shift+F9           move container to workspace $workspace19
+
+# move workspace to right screen (cycles when in right most)
+bindsym $mod+Shift+m            move workspace to output right
+bindsym $mod+Shift+n            move workspace to output left
+
+# reload i3 configuration file (this file)
+bindsym $mod+Shift+c            reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r            restart
+
+# exit i3
+bindsym $mod+Shift+e             exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use $mod right mouse)
+mode "resize" {
+    # bindings to resize
+    bindsym j                   resize shrink width 4 px or 4 ppt
+    bindsym k                   resize grow height 4 px or 4 ppt
+    bindsym l                   resize shrink height 4 px or 4 ppt
+    bindsym semicolon           resize grow width 4 px or 4 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left                resize shrink width 10 px or 10 ppt
+    bindsym Down                resize grow height 10 px or 10 ppt
+    bindsym Up                  resize shrink height 10 px or 10 ppt
+    bindsym Right               resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return              mode "default"
+    bindsym Escape              mode "default"
+}
+
+# Enter the resize mode
+bindsym $mod+r                  mode "resize"
+
+# bind tools to workspaces (examples)
+#assign [class="Firefox"] $workspace3
+#assign [class="Spotify"] $workspace0
+
+# change some windows behaviour
+for_window [class="Calamares"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+
+# window colors
+#                         border  background text    indicator
+client.focused            $base01 $base01    $base10 $base0F
+client.focused_inactive   $base11 $base11    $base12 $base0F
+client.unfocused          $base11 $base11    $base12 $base0F
+client.urgent             $base02 $base08    $base00 $base0F
+
+# start i3bar to display a workspace bar
+bar {
+  font pango: Noto Mono for Powerline, FontAwesome 12
+  status_command i3blocks
+  #status_command py3status
+  tray_output primary
+  #tray_padding 0
+  position top
+  colors {
+    separator   $base10
+    background  $base01
+    statusline  $base05
+    #border  background  text
+    focused_workspace $base01 $base01     $base10
+    active_workspace  $base01 $base01     $base03
+    inactive_workspace  $base01 $base01     $base03
+    urgent_workspace  $base01 $base01     $base08
+  }
+}
+
+# hide or display bar
+bindsym $mod+p bar mode toggle
+bindsym $mod+m bar mode invisible
+
+# Invert colors (requires xrandr-invert-colors installed)
+bindsym $mod+i exec xrandr-invert-colors
+
+# volume control
+# increase sound volume
+bindsym XF86AudioRaiseVolume exec "amixer -q -D default sset Master 5%+ && pkill -RTMIN+1 i3blocks && osd_cat -S white -p middle -b percentage -P $(/home/gday/git/i3blocks-contrib/volume/volume) -T 'VOLUME' -d 1 -A center -l 1 -c green -f '-*-*-medium-*-*-*-20-*-*-*-*-*-*-*'"
+# decrease sound volume
+bindsym XF86AudioLowerVolume exec "amixer -q -D default sset Master 5%- && pkill -RTMIN+1 i3blocks && osd_cat -S white -p middle -b percentage -P $(/home/gday/git/i3blocks-contrib/volume/volume) -T 'VOLUME' -d 1 -A center -l 1 -c green -f '-*-*-medium-*-*-*-20-*-*-*-*-*-*-*'"
+# mute sound
+bindsym XF86AudioMute        exec "amixer -q -D default sset Master toggle && pkill -RTMIN+1 i3blocks && .config/i3/mute | osd_cat -p middle -d 1 -A center -l 1 -c green -f '-*-*-medium-*-*-*-20-*-*-*-*-*-*-*'"
+
+# screen brightness controls
+bindsym XF86MonBrightnessUp     exec xbacklight -inc 1 # increase screen brightness
+bindsym XF86MonBrightnessDown   exec xbacklight -dec 1 # decrease screen brightness
+bindsym Shift+XF86MonBrightnessUp     exec xbacklight -inc 10 # increase screen brightness
+bindsym Shift+XF86MonBrightnessDown   exec xbacklight -dec 10 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay   exec playerctl play-pause
+bindsym XF86AudioPause  exec playerctl pause
+bindsym XF86AudioStop   exec playerctl stop
+bindsym XF86AudioNext   exec playerctl next
+bindsym XF86AudioPrev   exec playerctl previous
+
+# Focus settings
+focus_follows_mouse no
+no_focus [window_role="pop-up"]
+
+# disable mouse warping
+#mouse_warping none
+
+# set random background on desktop
+exec_always --no-startup-id feh --bg-fill "$(find $HOME/.wallpaper/|shuf -n1)"
+
+# printscreen
+bindsym Print exec scrot -q 95 '%Y-%m-%d-%s_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots'
+
+# Toggle borders
+bindsym $mod+Shift+b border toggle
+
+# background apps startup
+#exec compton -f
+#exec --no-startup-id blueberry-tray
+exec --no-startup-id blueman-tray # bluetooth
+exec --no-startup-id nm-applet # network-manager
+exec --no-startup-id pasystray # pulseaudio
+exec --no-startup-id redshift-gtk # blue light killer
+exec --no-startup-id xss-lock -- i3lock -c '#000000'
+#exec --no-startup-id pamac-tray
+#exec --no-startup-id clipit
+exec --no-startup-id copyq # clipboard manager
+exec --no-startup-id setxkbmap -layout us -option caps:escape # swap capslock to escape
